@@ -93,47 +93,36 @@
         function defaultHandler() {
           var containerBottom = void 0;
           var elementBottom = void 0;
-          console.log("1");
           if (container === windowElement) {
-            console.log("2");
             containerBottom = height(container) + pageYOffset(container[0].document.documentElement);
             elementBottom = offsetTop(elem) + height(elem);
           } else {
-            console.log("3");
             containerBottom = height(container);
             var containerTopOffset = 0;
             if (offsetTop(container) !== undefined) {
-              console.log("4");
               containerTopOffset = offsetTop(container);
             }
             elementBottom = offsetTop(elem) - containerTopOffset + height(elem);
           }
 
           if (useDocumentBottom) {
-            console.log("5");
             elementBottom = height((elem[0].ownerDocument || elem[0].document).documentElement);
           }
 
           var remaining = elementBottom - containerBottom;
           var shouldScroll = remaining <= height(container) * scrollDistance + 1;
           if (shouldScroll) {
-            console.log("6");
             checkWhenEnabled = true;
 
             if (scrollEnabled) {
-              console.log("7");
               if (scope.$$phase || $rootScope.$$phase) {
-                console.log("8");
                 scope.infiniteScroll();
               } else {
-                console.log("9");
                 scope.$apply(scope.infiniteScroll);
               }
             }
           } else {
-            console.log("10");
             if (checkInterval) {
-              console.log("11");
               $interval.cancel(checkInterval);
             }
             checkWhenEnabled = false;
@@ -310,4 +299,5 @@
   exports['default'] = MODULE_NAME;
   module.exports = exports['default'];
 });
+
 
