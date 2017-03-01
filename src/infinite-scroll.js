@@ -29,6 +29,14 @@ angular.module(MODULE_NAME, [])
       let unregisterEventListener = null;
       let checkInterval = false;
 
+      scope.$watch(function () {
+        return elem[0].offsetHeight
+      }, function (newValue, oldValue) {
+        if (newValue != oldValue && newValue != 0) {
+          handler();
+        }
+      });
+
       function height(element) {
         const el = element[0] || element;
 
